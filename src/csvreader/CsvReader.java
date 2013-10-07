@@ -6,20 +6,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CsvReader {
+	
+	private static final String csvValueSeparator = ",";
+	
 	public static void read(URI uri) {
 		BufferedReader br = null;
 		String line = "";
-		String cvsSplitBy = ",";
 		try {
 			FileReader csvFile = new FileReader(uri.toString());
 			br = new BufferedReader(csvFile);
 			while ((line = br.readLine()) != null) {
 				// use comma as separator
-				String[] country = line.split(cvsSplitBy);
-				System.out.println("Country [code= " + country[4] + " , name="
-						+ country[5] + "]");
+				String[] country = line.split(csvValueSeparator);
+//				System.out.println("Country [code= " + country[4] + " , name="
+//						+ country[5] + "]");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -45,4 +49,5 @@ public class CsvReader {
 		}
 		read(uri);
 	}
+
 }
