@@ -1,8 +1,7 @@
 package csvgenerator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import io.MyFileWriter;
+
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,20 +15,8 @@ public class CsvGenerator {
 	private static final char newLineSeparator = '\n';
 
 	private static void createCsvFile(String fileName, String fileContent) throws IOException {
-		File file = new File(defaultFilePath + fileName.trim() + defaultExtension);
-		if (!file.exists()) {
-			file.createNewFile();
-			BufferedWriter bw = null;
-			try {
-				FileWriter writer = new FileWriter(file.getAbsoluteFile());
-				bw = new BufferedWriter(writer);
-				bw.write(fileContent);
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				bw.close();
-			}
-		}
+		MyFileWriter writer = new MyFileWriter(defaultFilePath + fileName.trim() + defaultExtension);
+		writer.writeContent(fileContent);
 	}
 
 	private static String generateSingleElement(Object element) {

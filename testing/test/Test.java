@@ -19,8 +19,11 @@ public class Test {
 		List elems = new ArrayList();
 		elems.add("pippo");
 		elems.add("calippo");
+		elems.add(1);
+		elems.add(1.1);
+		elems.add(1,89);
 		try {
-			CsvGenerator.generateCsvFromList("pippoCalippo", elems, 2);
+			CsvGenerator.generateCsvFromList("pippoCalippo", elems, 1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
