@@ -29,5 +29,21 @@ public class Test {
 			e.printStackTrace();
 		}
 	}
+	
+	@org.junit.Test
+	public void testCreate2() {
+		List elems = new ArrayList();
+		elems.add("pippo");
+		elems.add("calippo");
+		elems.add(1);
+		elems.add(1.1);
+		elems.add(1,89);
+		try {
+			CsvGenerator.generateCsvFromList("pippoCalippo", elems, 8);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -3,19 +3,30 @@ package csvgenerator;
 import io.MyFileWriter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 
 public class CsvGenerator {
 
+	private static final String dateFormatPattern = "ddMMyyyyHHmmssSSS";
+	
 	private static final String defaultFilePath = "C:/Users/L938182/Documents/test/";
 	private static final String defaultExtension = ".csv";
 	private static final char singleElementSeparator = ',';
 	private static final char newLineSeparator = '\n';
+	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat(dateFormatPattern);
+	
+
+
 
 	private static void createCsvFile(String fileName, String fileContent) throws IOException {
-		MyFileWriter writer = new MyFileWriter(defaultFilePath + fileName.trim() + defaultExtension);
+		String now = sdf.format(new Date());
+		MyFileWriter writer = new MyFileWriter(defaultFilePath + fileName.trim() + "_" +  now + defaultExtension);
 		writer.writeContent(fileContent);
 	}
 
